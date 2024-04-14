@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--TODO
+- SHIT THE CHECKBOX ISN'T ACCESSIBILE (fix that in future websites)
+- NAH: Do fake comments and style them in the code(?)
+- FIXED: Change what the sections are about, there's a lot of overlap
+- DONE: Style the subsections in the nav and potentially the page
+- DONE: Style code tags to have indents like proper code
+- DONE: Style tags in text to look like html tags
+- DONE: Add gap to <li>
+- DONE: Go through and add a span to all html tags in <p>s
+- DONE: Sit down and proof read the page, removing elements that seem out of place
+- DONE: Cross check to make sure the sections are the same as their linked article-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>CSS: First Steps Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkbox = document.getElementById('check');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    checkbox.checked = false;
+                });
+            });
+        });
+    </script>
+</head>
+
+<!--DONE: USE THE MDN TO FILL OUT THE PAGE-->
+
+<main id="main-doc">
+
+    <!--NAV
+    On regular sized devices (laptops, desktops), the element with id="navbar" should be shown on the left side of the screen and should always be visible to the user-->
+    <nav id="navbar">
+        <input type="checkbox" id="check">
+        <header class="nav-header">
+            <a class="logo" aria-label="The logo of the Mozilla Developer Network with a link to their homepage attached." href="https://developer.mozilla.org/en-US/"></a>
+            <h2 class="nav-title">CSS <span class="byebye">Documentation</span></h2>
+            <label for="check" class="menu">
+                <i class='bx bx-menu'></i>
+                <i class='bx bx-x'></i>
+            </label>
+        </header>
+        <ul class="sidebar">
+            <li><a class="nav-link" href="#css_overview">CSS Overview</a></li>
+            <li><a class="nav-link" href="#prerequisites">Prerequisites</a></li>
+            <li><a class="nav-link" href="#css_syntax">CSS Syntax</a></li>
+            <li class="sub-li"><a class="sub-link" href="#selectors">Selectors</a></li>
+            <li class="sub-li"><a class="sub-link" href="#properties_and_values">Properties and Values</a></li>
+            <li><a class="nav-link" href="#cascade">Cascade</a></li>
+            <li><a class="nav-link" href="#specificity">Specificity</a></li>
+            <li><a class="nav-link" href="#inheritance">Inheritance</a></li>
+            <li class="sub-li"><a class="sub-link" href="#controlling_inheritance">Controlling Inheritance</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!--OVERVIEW-->
+    <div class="content-wrapper">
+        <section id="css_overview" class="main-section">
+            <header>
+                <!--https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps-->
+                <h2>CSS Overview</h2>
+            </header>
+
+            <p>CSS (Cascading Style Sheets) is used to style and lay out web pages — for example, to alter the font,
+                color,
+                size, and spacing of your content, split it into multiple columns, or add animations and other
+                decorative
+                features. This module provides a gentle beginning to your path towards CSS mastery with the basics of
+                how it
+                works, what the syntax looks like, and how you can start using it to add styling to HTML.</p>
+                
+        </section>
+
+
+        <!--PREREQUISITES-->
+        <section id="prerequisites" class="main-section">
+            <header>
+                <!--https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps#prerequisites-->
+                <h2>Prerequisites</h2>
+            </header>
+
+            <p>Before reading this document, you should have:</p>
+
+            <ol>
+                <li>Basic familiarity with using computers and using the Web passively (i.e. looking at it, consuming
+                    the
+                    content.)</li>
+                <li>A basic work environment set up, as detailed in <a
+                        href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/Installing_basic_software">Installing
+                        basic software</a>, and an understanding of how
+                    to create and manage files, as detailed in <a
+                        href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/Dealing_with_files">Dealing
+                        with files</a>.</li>
+                <li>Basic familiarity with HTML, as discussed in the <a
+                        href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML">Introduction to
+                        HTML</a> module.</li>
+            </ol>
+        </section>
+
+
+        <!--CSS SYNTAX-->
+        <section id="css_syntax" class="main-section">
+            <header>
+                <!--https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/What_is_CSS#css_syntax-->
+                <h2>CSS Syntax</h2>
+            </header>
+
+            <p>CSS is a rule-based language — you define the rules by specifying groups of styles that should be applied
+                to
+                particular elements or groups of elements on your web page.</p>
+
+            <p>For example, you can decide to have the main heading on your page to be shown as large red text. The
+                following code shows a very simple CSS rule that would achieve the styling described above:</p>
+
+            <div class="code-wrapper">
+                <code>h1 {
+                    <span class="indent">color: red;</span>
+                    <span class="indent">font-size: 5em;</span>
+                    }
+                </code>
+            </div>
+
+            <ul>
+                <li>In the above example, the CSS rule opens with a selector. This selects the HTML element that we are
+                    going to style. In this case, we are styling level one headings (<a
+                        href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements">h1</a>).</li>
+                <li>We then have a set of curly braces <span class="unicode">{ }</span>.</li>
+                <li>Inside the braces will be one or more declarations, which take the form of property and value pairs.
+                    We
+                    specify the property (<span class="unicode">color</span> in the above example) before the colon, and
+                    we
+                    specify the value of the
+                    property after the colon (<span class="unicode">red</span> in this example).</li>
+                <li>This example contains two declarations, one for <span class="unicode">color</span> and the other for
+                    <span class="unicode">font-size</span>. Each pair specifies a
+                    property of the element(s) we are selecting (<a
+                        href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements">h1</a> in this
+                    case), then a value that we'd like to give the
+                    property.
+                </li>
+            </ul>
+
+            <p>CSS <a href="#properties_and_values">properties</a> have different allowable values, depending on which
+                property is being specified. In our
+                example, we have the <span class="unicode">color</span> property, which can take various <a
+                    href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units#color">color
+                    values</a>. We also have the <span class="unicode">font-size</span>
+                property. This property can take various size units as a value.</p>
+
+            <p>A CSS stylesheet will contain many such rules, written one after the other.</p>
+
+            <div class="code-wrapper">
+                <code>h1 {
+                    <span class="indent">color: red;</span>
+                    <span class="indent">font-size: 5em;</span>
+                    }
+                
+                    p {
+                    <span class="indent">color: black;</span>
+                    }
+                </code>
+            </div>
+
+            <p>You will find that you quickly learn some values, whereas others you will need to look up. The individual
+                property pages on <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference">MDN</a> give you
+                a
+                quick way to look up properties and their values when you forget or when you want to know what else you
+                can
+                use as a value.</p>
+        </section>
+
+        <!--SELECTORS-->
+        <section id="selectors" class="sub-section">
+            <header>
+                <!--https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/How_CSS_is_structured#selectors-->
+                <h3>Selectors</h3>
+            </header>
+
+            <p>A selector targets HTML to apply styles to content. If CSS is not applying to content as expected, your
+                selector may not match the way you think it should match.</p>
+
+            <p>Each CSS rule starts with a selector — or a list of selectors — in order to tell the browser which
+                element
+                or elements the rules should apply to. All the examples below are valid selectors or lists of selectors.
+            </p>
+
+            <div class="code-wrapper">
+                <code>h1
+                    a:link
+                    .manythings
+                    #onething
+                    *
+                    .box p
+                    .box p:first-child
+                    h1, h2, .intro
+                </code>
+            </div>
+
+            <p>Try creating some CSS rules that use the selectors above. Add HTML to be styled by the selectors. If any
+                of
+                the syntax above is not familiar, try searching the <a
+                    href="https://developer.mozilla.org/en-US/docs/Learn/CSS">MDN</a>.</p>
+        </section>
+
+        <!--PROPERTIES AND VALUES-->
+        <section id="properties_and_values" class="sub-section">
+            <header>
+                <!--https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/How_CSS_is_structured#properties_and_values-->
+                <h3>Properties and Values</h3>
+            </header>
+
+            <p>At its most basic level, CSS consists of two components:</p>
+
+            <ul>
+                <li>Properties: These are human-readable identifiers that indicate which stylistic features you want to
+                    modify. For example, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-size"
+                        class="unicode">font-size</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/width"
+                        class="unicode">width</a>,
+                    and <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color"
+                        class="unicode">background-color.</a>
+                </li>
+                <li>Values: Each property is assigned a value. This value indicates how to style the property.</li>
+            </ul>
+
+            <p>The example below highlights a single property and value. The property name is <span
+                    class="unicode">color</span> and the value is <span class="unicode">blue</span>.
+            </p>
+
+            <div class="code-wrapper">
+                <code>h1 {
+                    <span class="highlight indent">color: blue;</span> 
+                    <span class="indent">background-color: yellow;</span>
+                    }
+
+                    p {
+                    <span class="indent">color: red;</span>
+                    }
+                </code>
+            </div>
+
+            <p>When a property is paired with a value, this pairing is called a <span class="italic">CSS
+                    declaration</span>.
+                CSS declarations are found
+                within <span class="italic">CSS Declaration Blocks</span>. In the example below, highlighting identifies
+                the
+                CSS declaration block.</p>
+
+            <div class="code-wrapper">
+                <code>h1 {
+                    <span class="highlight indent">color: blue;</span>
+                    <span class="highlight indent">background-color: yellow;</span>
+                    }
+
+                    p {
+                    <span class="indent">color: red;</span>
+                    }
+                </code>
+            </div>
+
+            <p>Finally, CSS declaration blocks are paired with <span class="italic">selectors</span> to produce <span
+                    class="italic">CSS rulesets</span> (or <span class="italic">CSS rules</span>). The example
+                below contains two rules: one for the <span class="unicode">h1</span> selector and one for the <span
+                    class="unicode">p</span> selector. The colored highlighting
+                identifies
+                the <span class="unicode">h1</span> rule.</p>
+
+            <div class="code-wrapper">
+                <code><span class="highlight">h1 {
+                    <span class="indent">color: blue;</span>
+                    <span class="indent">background-color:yellow;</span>
+                    }
+                    </span>
+
+                    p {
+                    <span class="indent">color: red;</span>
+                    }
+                </code>
+            </div>
+
+            <p>Setting CSS properties to specific values is the primary way of defining layout and styling for a
+                document.
+                The
+                CSS engine calculates which declarations apply to every single element of a page.</p>
+
+            <p>CSS properties and values are case-insensitive. The property and value in a property-value pair are
+                separated by a colon (<span class="unicode">:</span>).</p>
+        </section>
+
+
+        <!--CASCADE-->
+        <section id="cascade" class="main-section">
+            <header>
+                <!--https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance#cascade-->
+                <h2>Cascade</h2>
+            </header>
+
+            <p>Stylesheets <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Cascade">cascade</a> — at a very
+                simple
+                level, this means that the origin, the cascade layer, and the order of
+                CSS rules matter. When two rules from the same cascade layer apply and both have equal specificity, the
+                one
+                that is defined last in the stylesheet is the one that will be used.</p>
+
+            <p>In the below example, we have two rules that could apply to the <span class="unicode">&lt;h1&gt;</span>
+                element. The <span class="unicode">&lt;h1&gt;</span> content
+                ends up being colored blue. This is because both the rules are from the same source, have an identical
+                element selector, and therefore, carry the same specificity, but the last one in the source order wins.
+            </p>
+
+            <p class="code_text h1-b">This is my heading.</p>
+
+            <div class="code-wrapper">
+                <code>h1 {
+                    <span class="indent">color: red;</span>
+                    }
+                    h1 {
+                    <span class="indent">color: blue;</span>
+                    }
+
+                    &lt;h1&gt;This is my heading.&lt;/h1&gt;
+                </code>
+            </div>
+        </section>
+
+
+        <!--SPECIFICITY-->
+        <section id="specificity" class="main-section">
+            <header>
+                <!--https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance#specificity-->
+                <h2>Specificity</h2>
+            </header>
+
+            <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity">Specificity</a> is the algorithm
+                that
+                the browser uses to decide which property value is applied to an element.
+                If multiple style blocks have different selectors that configure the same property with different values
+                and
+                target the same element, specificity decides the property value that gets applied to the element.
+                Specificity is basically a measure of how specific a selector's selection will be:</p>
+
+            <ul>
+                <li>An element selector is less specific; it will select all elements of that type that appear on a
+                    page, so
+                    it has less weight. Pseudo-element selectors have the same specificity as regular element selectors.
+                </li>
+                <li>A class selector is more specific; it will select only the elements on a page that have a specific
+                    <span class="unicode">class</span>
+                    attribute value, so it has more weight. Attribute selectors and pseudo-classes have the same weight
+                    as a
+                    class.
+                </li>
+            </ul>
+
+            <p>Below, we again have two rules that could apply to the <span class="unicode">&lt;h1&gt;</span> element.
+                The
+                <span class="unicode">&lt;h1&gt;</span> content below ends
+                up being colored red because the class selector <span class="unicode">main-heading</span> gives its rule
+                a
+                higher specificity. So even
+                though the rule with the <span class="unicode">&lt;h1&gt;</span> element selector appears further down
+                in
+                the source order, the one with
+                the higher specificity, defined using the class selector, will be applied.
+            </p>
+
+            <div class="code-preview">
+                <p class="code_text h1-r">This is my heading.</p>
+
+                <div class="code-wrapper">
+                    <code>.main-heading {
+                    <span class="indent">color: red;</span>
+                    }
+                    
+                    h1 {
+                    <span class="indent">color: blue;</span>
+                    }
+                    
+                    &lt;h1 class="main-heading"&gt;This is my heading.&lt;/h1&gt;
+                </code>
+                </div>
+            </div>
+        </section>
+
+        <!--INHERITANCE-->
+        <section id="inheritance" class="main-section">
+            <header>
+                <!--https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance#inheritance-->
+                <h2>Inheritance</h2>
+            </header>
+
+            <p>Inheritance also needs to be understood in this context — some CSS property values set on parent elements
+                are
+                inherited by their child elements, and some aren't.</p>
+
+            <p>For example, if you set a <span class="unicode">color</span> and <span class="unicode">font-family</span>
+                on
+                an element, every element inside it will also be styled
+                with that color and font, unless you've applied different color and font values directly to them.</p>
+
+            <p class="code_text p-b">As the body has been set to have a color of blue this is inherited through the
+                descendants.
+            </p>
+
+            <p class="code_text p-b">We can change the color by targeting the element with a selector, such as this
+                <span class="s-p">span</span>.
+            </p>
+
+            <div class="code-wrapper">
+                <code>body {
+                    <span class="indent">color: blue;</span>
+                    }
+
+                    span {
+                    <span class="indent">color: black;</span>
+                    }
+                    
+                    &lt;p&gt;As the body has been set to have a color of blue this is inherited through the descendants.&lt;/p&gt;
+
+                    &lt;p&gt;We can change the color by targeting the element with a selector, such as this &lt;span&gt;span&lt;/span&gt;.&lt;/p&gt;
+                </code>
+            </div>
+
+            <p>Some properties do not inherit — for example, if you set a <span class="unicode">width</span> of 50% on
+                an
+                element, all of its descendants
+                do not get a width of 50% of their parent's width. If this was the case, CSS would be very frustrating
+                to
+                use!</p>
+        </section>
+
+        <!--CONTROLLING INHERITANCE-->
+        <section id="controlling_inheritance" class="sub-section">
+            <header>
+                <!--https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance#controlling_inheritance-->
+                <h3>Controlling Inheritance</h3>
+            </header>
+
+            <p>CSS provides five special universal property values for controlling inheritance. Every CSS property
+                accepts
+                these values.</p>
+
+            <ul class="nolist">
+                <li>
+                    <h4 class="list_subtitle unicode"><a
+                            href="https://developer.mozilla.org/en-US/docs/Web/CSS/inherit">inherit</a></h4>
+                    <p>Sets the property value applied to a selected element to be the same as that of its parent
+                        element.
+                        Effectively, this "turns on inheritance".</p>
+                </li>
+                <li>
+                    <h4 class="list_subtitle unicode"><a
+                            href="https://developer.mozilla.org/en-US/docs/Web/CSS/initial">initial</a></h4>
+                    <p>Sets the property value applied to a selected element to the <a
+                            href="https://developer.mozilla.org/en-US/docs/Web/CSS/initial_value">initial value</a> of
+                        that
+                        property.</p>
+                </li>
+                <li>
+                    <h4 class="list_subtitle unicode"><a
+                            href="https://developer.mozilla.org/en-US/docs/Web/CSS/revert">revert</a></h4>
+                    <p>Resets the property value applied to a selected element to the browser's default styling rather
+                        than
+                        the
+                        defaults applied to that property. This value acts like <a
+                            href="https://developer.mozilla.org/en-US/docs/Web/CSS/unset" class="unicode">unset</a> in
+                        many
+                        cases.</p>
+                </li>
+                <li>
+                    <h4 class="list_subtitle unicode"><a
+                            href="https://developer.mozilla.org/en-US/docs/Web/CSS/revert-layer">revert-layer</a></h4>
+                    <p>Resets the property value applied to a selected element to the value established in a previous
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@layer">
+                            cascade
+                            layer
+                        </a>.
+                    </p>
+                </li>
+                <li>
+                    <h4 class="list_subtitle unicode"><a
+                            href="https://developer.mozilla.org/en-US/docs/Web/CSS/unset">unset</a></h4>
+                    <p>Resets the property to its natural value, which means that if the property is naturally inherited
+                        it
+                        acts
+                        like <span class="unicode">inherit</span>, otherwise it acts like <span
+                            class="unicode">initial</span>.</p>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+</main>
+
+</html>
